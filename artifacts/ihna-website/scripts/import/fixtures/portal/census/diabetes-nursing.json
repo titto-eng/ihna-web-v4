@@ -1,0 +1,23 @@
+{
+  "wpId": 868,
+  "path": "/courses/diabetes-nursing/",
+  "khId": 9003,
+  "khIdSynthetic": true,
+  "asOf": "2026-10-16",
+  "rows": [
+    {
+      "intake": "November 2026",
+      "start": "02-11-2026",
+      "end": "03-05-2027",
+      "census": "02-12-2026",
+      "orientation": "02-11-2026"
+    },
+    {
+      "intake": "February 2027",
+      "start": "01-02-2027",
+      "end": "02-08-2027",
+      "census": "03-03-2027",
+      "orientation": "01-02-2027"
+    }
+  ]
+}

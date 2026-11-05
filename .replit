@@ -1,4 +1,4 @@
-modules = ["nodejs-24"]
+modules = ["nodejs-24", "python-base-3.13", "postgresql-16"]
 
 [deployment]
 router = "application"
@@ -18,3 +18,17 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+[nix]
+channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+DISABLE_DB_PUSH = "1"
+DRY_RUN = "1"
+ENQUIRY_AUTORUN = "0"
+NEXT_PUBLIC_ROBOTS = "noindex"
+PAYMENTS_DRY_RUN = "1"
+PORTAL_ENABLED = "0"
+TRACKING_ENABLED = "0"

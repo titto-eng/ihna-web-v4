@@ -1,0 +1,390 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@import 'tw-animate-css';
+
+/*
+  Design tokens (05-design-system §1), derived from the BON prototype's HSL system.
+  This is the IHNA copy: only the colour values differ from ihm-web (D7).
+  Fonts are self-hosted (src/fonts/) and provided by next/font/local in app/(site)/layout.tsx as CSS variables.
+*/
+@theme {
+  /* IHNA palette (plan D7, 05 §9): derived from the old mwt-ihna theme's primary teal (#003f4a / #009791)
+     and secondary orange (#f7941d). Same tokens, fonts and system as ihm-web; only the values differ. */
+  --color-background: hsl(180 25% 97%);
+  --color-foreground: hsl(190 60% 11%);
+  --color-card: hsl(180 30% 99%);
+  --color-card-foreground: hsl(190 60% 11%);
+  --color-muted: hsl(178 22% 91%);
+  --color-muted-foreground: hsl(190 25% 32%);
+  --color-border: hsl(180 18% 84%);
+  /* Filled primary surfaces carry `foreground` text (DEC-16): 31% lightness keeps that pair at 4.7:1 (AA). */
+  --color-primary: hsl(178 100% 31%);
+  --color-primary-foreground: hsl(180 30% 99%);
+  /* Darker teal for text on light backgrounds (AA, DEC-16 pattern): the old theme's #003f4a. */
+  --color-primary-strong: hsl(189 100% 15%);
+  --color-secondary: hsl(33 93% 54%);
+  --color-secondary-foreground: hsl(190 60% 11%);
+  /* the orange as small text on light backgrounds (WCAG AA 4.5:1) */
+  --color-secondary-strong: hsl(26 92% 34%);
+  --color-accent: hsl(189 100% 15%);
+  --color-accent-foreground: hsl(180 30% 99%);
+  --color-ink: hsl(190 60% 11%);
+  --color-ink-foreground: hsl(180 30% 99%);
+  --color-destructive: hsl(0 72% 45%);
+  --color-ring: hsl(178 100% 30%);
+  --color-popover: hsl(180 30% 99%);
+  --color-popover-foreground: hsl(190 60% 11%);
+  --color-input: hsl(180 18% 80%);
+  --color-destructive-foreground: hsl(180 30% 99%);
+  /* Slightly lifted ink for panels that sit on ink (BON 01 pathways). */
+  --color-ink-raised: hsl(190 55% 15%);
+  /* Brand-blend accents (course pages): tints between the IHNA teal and orange, for icon tiles and chapter colours. */
+  --color-mint: hsl(168 62% 40%);
+  --color-ocean: hsl(196 78% 36%);
+  --color-sun: hsl(42 96% 52%);
+  --color-coral: hsl(16 86% 58%);
+  --color-chart-1: hsl(178 100% 31%);
+  --color-chart-2: hsl(33 93% 54%);
+  --color-chart-3: hsl(189 100% 15%);
+  --color-chart-4: hsl(190 60% 11%);
+  --color-chart-5: hsl(180 18% 60%);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  --font-mono: var(--font-spline-mono), ui-monospace, monospace;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-card: 1.75rem;
+
+  --text-display-xl: clamp(3rem, 8.4vw, 7.4rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-lg: clamp(2.6rem, 7vw, 6rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-md: clamp(2.2rem, 5vw, 4.2rem);
+  --text-display-md--line-height: 0.98;
+  --text-display-stat: clamp(3rem, 8vw, 6rem);
+  --text-display-stat--line-height: 1;
+
+  --container-site: 1320px;
+  --container-prose-site: 72ch;
+
+  --animate-rise: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* BON display face: Fraunces light, optical size 144. */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+/* Mono eyebrow / label. */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* BON sunrise gradient. */
+@utility bg-sunrise-glow {
+  background-image:
+    radial-gradient(120% 90% at 80% 10%, hsl(33 93% 54% / 0.5), transparent 55%),
+    radial-gradient(90% 80% at 10% 90%, hsl(189 100% 15% / 0.45), transparent 60%),
+    linear-gradient(135deg, hsl(178 100% 30%), hsl(189 100% 15%));
+}
+
+/* Scroll reveal only where view timelines exist, so content is never hidden without support. */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    animation: reveal-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@layer base {
+  *, ::after, ::before { border-color: var(--color-border); }
+  .prose {
+    --tw-prose-body: var(--color-foreground);
+    --tw-prose-headings: var(--color-foreground);
+    --tw-prose-links: var(--color-primary-strong);
+    --tw-prose-bold: var(--color-foreground);
+    --tw-prose-bullets: var(--color-primary);
+    --tw-prose-counters: var(--color-primary-strong);
+    --tw-prose-quotes: var(--color-foreground);
+    --tw-prose-quote-borders: var(--color-secondary);
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
+  }
+
+  html { scroll-behavior: smooth; }
+  /* decorative glows and rotated frames may reach past the viewport edge; `clip` (not hidden) keeps sticky elements working */
+  html, body { overflow-x: clip; }
+  body { @apply bg-background font-sans text-foreground antialiased; }
+  h1, h2, h3, h4 { @apply font-display; text-wrap: balance; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-ring; }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+}
+
+/* ---------- Brand motion (header, video hero) ---------- */
+
+/* Sticky header: transparent-glass at the top of the page, then a soft shadow once the page scrolls (scroll timeline; no JS). */
+@keyframes header-elevate-kf {
+  to { box-shadow: 0 10px 30px -18px hsl(189 100% 15% / 0.45); background-color: hsl(180 30% 99% / 0.94); }
+}
+@utility header-elevate {
+  @supports (animation-timeline: scroll()) {
+    animation: header-elevate-kf linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 140px;
+  }
+}
+
+/* Video hero text slider: words rise out of a mask, one after another (the delay is set per word with --i). */
+@keyframes hero-word-in {
+  from { opacity: 0; transform: translateY(110%) rotate(4deg); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0) rotate(0); filter: blur(0); }
+}
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes hero-kenburns { from { transform: scale(1.04); } to { transform: scale(1.12); } }
+@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes hero-scroll-dot { 0% { transform: translateY(0); opacity: 1; } 80% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
+
+@utility hero-word {
+  display: inline-block;
+  animation: hero-word-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 150ms);
+}
+@utility hero-fade-up {
+  animation: hero-fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+@utility hero-progress {
+  transform-origin: left;
+  animation: hero-progress var(--hero-ms, 7000ms) linear both;
+}
+@utility hero-float { animation: hero-float 6s ease-in-out infinite; }
+@utility hero-scroll-dot { animation: hero-scroll-dot 1.8s ease-in-out infinite; }
+@utility hero-kenburns { animation: hero-kenburns 20s ease-out both alternate infinite; }
+
+/* ---------- Prose (every migrated page body): brand headings, check bullets, framed tables and quotes ----------
+   In the utilities layer so these win over @tailwindcss/typography's own `.prose` rules (same specificity, later layer). */
+@layer utilities {
+  .prose :where(h2):not(:where([class~='not-prose'] *)) {
+    position: relative;
+    padding-top: 1.1rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+  .prose :where(h2):not(:where([class~='not-prose'] *))::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.75rem;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  }
+  .prose :where(h3, h4):not(:where([class~='not-prose'] *)) { color: var(--color-primary-strong); }
+  /* long URLs, email addresses and file names wrap instead of pushing the page sideways on phones */
+  .prose :where(a, td, li, p):not(:where([class~='not-prose'] *)) { overflow-wrap: anywhere; }
+  .prose :where(ul > li):not(:where([class~='not-prose'] *)) { padding-inline-start: 1.9em; }
+  .prose :where(ul > li):not(:where([class~='not-prose'] *))::marker { content: ''; }
+  .prose :where(ul > li):not(:where([class~='not-prose'] *))::before {
+    content: '';
+    position: absolute;
+    left: 0.15em;
+    top: 0.42em;
+    width: 1.05em;
+    height: 1.05em;
+    border-radius: 999px;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 62% no-repeat,
+      linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
+  }
+  .prose :where(ul > li):not(:where([class~='not-prose'] *)) { position: relative; }
+  .prose :where(ol > li):not(:where([class~='not-prose'] *))::marker { font-weight: 700; color: var(--color-secondary); }
+  .prose :where(blockquote):not(:where([class~='not-prose'] *)) {
+    border-inline-start-width: 4px;
+    border-radius: 0 1rem 1rem 0;
+    background: color-mix(in oklab, var(--color-primary) 7%, transparent);
+    padding: 1rem 1.5rem;
+    font-style: normal;
+  }
+  .prose :where(table):not(:where([class~='not-prose'] *)) {
+    display: block;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .prose :where(thead th):not(:where([class~='not-prose'] *)) {
+    background: var(--color-primary-strong);
+    color: var(--color-ink-foreground);
+    padding: 0.75rem 1rem;
+  }
+  .prose :where(tbody tr:nth-child(even)):not(:where([class~='not-prose'] *)) { background: color-mix(in oklab, var(--color-muted) 60%, transparent); }
+  .prose :where(tbody td):not(:where([class~='not-prose'] *)) { padding: 0.7rem 1rem; }
+  /* A paragraph holding two or more images is a logo row (accreditation marks, partner logos): show them side by side at logo size. */
+  .prose :where(p:has(> img + img)):not(:where([class~='not-prose'] *)) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  .prose :where(p:has(> img + img) > img):not(:where([class~='not-prose'] *)) {
+    width: auto;
+    max-height: 6rem;
+    margin: 0;
+    border-radius: 0.75rem;
+    background: var(--color-card);
+    padding: 0.5rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+  }
+  /* Long flat lists (country lists, partner names): two columns from md, three from xl, so they don't run down the page. */
+  @media (min-width: 768px) {
+    .prose :where(ol:has(> li:nth-child(12)), ul:has(> li:nth-child(12))):not(:where([class~='not-prose'] *)) { columns: 2; column-gap: 2.5rem; }
+    .prose :where(ol:has(> li:nth-child(12)) > li, ul:has(> li:nth-child(12)) > li):not(:where([class~='not-prose'] *)) { break-inside: avoid; }
+  }
+  @media (min-width: 1280px) {
+    .prose :where(ol:has(> li:nth-child(18)), ul:has(> li:nth-child(18))):not(:where([class~='not-prose'] *)) { columns: 3; }
+  }
+  .prose :where(a):not(:where([class~='not-prose'] *)) { text-decoration-color: color-mix(in oklab, var(--color-secondary) 70%, transparent); text-decoration-thickness: 2px; transition: color 0.2s, text-decoration-color 0.2s; }
+  .prose :where(a):not(:where([class~='not-prose'] *)):hover { text-decoration-color: var(--color-secondary); color: var(--color-primary); }
+  .prose :where(img):not(:where([class~='not-prose'] *)) { border-radius: 1.25rem; box-shadow: 0 20px 40px -24px hsl(189 100% 15% / 0.45); }
+}
+.prose-invert :where(h3, h4) { color: var(--color-ink-foreground); }
+
+/* ---------- Course page motion (src/components/course/) ---------- */
+@keyframes course-aurora {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(6%, -4%, 0) scale(1.08); }
+  66% { transform: translate3d(-5%, 5%, 0) scale(0.96); }
+}
+@keyframes course-spin { to { transform: rotate(360deg); } }
+@keyframes course-pulse-line { from { stroke-dashoffset: 1200; } to { stroke-dashoffset: 0; } }
+@keyframes course-shine { 0% { transform: translateX(-120%) skewX(-20deg); } 60%, 100% { transform: translateX(220%) skewX(-20deg); } }
+@keyframes course-glow { 0%, 100% { box-shadow: 0 0 0 0 hsl(33 93% 54% / 0.45); } 50% { box-shadow: 0 0 0 12px hsl(33 93% 54% / 0); } }
+@utility course-aurora { animation: course-aurora 18s ease-in-out infinite; }
+@utility course-spin { animation: course-spin 28s linear infinite; }
+@utility course-pulse-line { stroke-dasharray: 1200; animation: course-pulse-line 3.2s ease-out both; }
+@utility course-shine { animation: course-shine 3.6s ease-in-out infinite; }
+@utility course-glow { animation: course-glow 2.6s ease-in-out infinite; }
+
+/* Course video banner (CourseVideoHero): the loop pushes out once, a light sweep crosses the frame, viewfinder corners and the
+   fact cards slide in, the "watch" ring turns and pings. */
+@keyframes film-drift { from { transform: scale(1.14); } to { transform: scale(1.02); } }
+@keyframes film-sweep { 0% { transform: translateX(0) rotate(12deg); } 100% { transform: translateX(420%) rotate(12deg); } }
+@keyframes film-corner { from { opacity: 0; transform: scale(1.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes film-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes film-card { from { opacity: 0; transform: translateX(40px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes film-ping { 0% { transform: scale(1); opacity: 0.7; } 80%, 100% { transform: scale(2.1); opacity: 0; } }
+@utility film-drift { animation: film-drift 3.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@utility film-sweep { animation: film-sweep 9s ease-in-out infinite; }
+@utility film-corner { animation: film-corner 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@utility film-underline { animation: film-underline 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both; }
+@utility film-card { animation: film-card 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+@utility film-ring { animation: course-spin 18s linear infinite; }
+@utility film-ping { animation: film-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* Roadmap (src/components/page/roadmap.client.tsx): the road draws itself segment by segment once in view, the lane markings
+   flow, the stops pop in along it, a marker travels the road and the goal star breathes. */
+@keyframes roadmap-lane { to { stroke-dashoffset: -36; } }
+@keyframes roadmap-travel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+@keyframes roadmap-star { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(12deg) scale(1.06); } }
+@keyframes roadmap-glow { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.25); } }
+@layer components {
+  .roadmap .roadmap-seg { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.55s cubic-bezier(0.4, 0, 0.2, 1); transition-delay: calc(var(--i, 0) * 110ms); }
+  .roadmap.is-shown .roadmap-seg { stroke-dashoffset: 0; }
+  .roadmap .roadmap-lane { opacity: 0; transition: opacity 0.6s ease; transition-delay: calc(var(--i, 0) * 110ms + 400ms); animation: roadmap-lane 1.6s linear infinite; }
+  .roadmap.is-shown .roadmap-lane { opacity: 1; }
+  .roadmap .roadmap-stop { opacity: 0; transform: translateY(18px) scale(0.92); transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); transition-delay: calc(var(--i, 0) * 110ms); }
+  .roadmap.is-shown .roadmap-stop { opacity: 1; transform: none; }
+  .roadmap .roadmap-traveller { opacity: 0; offset-rotate: 0deg; transition: opacity 0.6s ease 2.4s; animation: roadmap-travel 22s linear infinite; }
+  .roadmap.is-shown .roadmap-traveller { opacity: 1; }
+  .roadmap .roadmap-star { animation: roadmap-star 6s ease-in-out infinite; }
+  .roadmap .roadmap-star-glow { animation: roadmap-glow 3s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .roadmap .roadmap-seg { stroke-dashoffset: 0; }
+    .roadmap .roadmap-lane, .roadmap .roadmap-stop { opacity: 1; transform: none; }
+    .roadmap .roadmap-traveller { display: none; }
+  }
+}
+
+/* School banner (templates/School.tsx): the photo panel's slanted edge, a slow pan, light bars sweeping across, the name ticker. */
+@keyframes school-pan { from { transform: scale(1.08) translateX(1.5%); } to { transform: scale(1.08) translateX(-1.5%); } }
+@keyframes school-bar { from { transform: translateX(-140%) skewX(-12deg); opacity: 0; } 30% { opacity: 1; } to { transform: translateX(0) skewX(-12deg); opacity: 1; } }
+@keyframes school-ticker { to { transform: translateX(-50%); } }
+@utility school-pan { animation: school-pan 16s ease-in-out infinite alternate; }
+@utility school-bar { animation: school-bar 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@utility school-ticker { animation: school-ticker 40s linear infinite; }
+@utility school-panel {
+  @media (min-width: 1024px) { clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* Hero looks (src/blocks/hero/looks.tsx). */
+@keyframes look-pan { from { transform: scale(1.1) translate(1.5%, 0); } to { transform: scale(1.1) translate(-1.5%, -1%); } }
+@keyframes look-pan-wide { from { transform: scale(1.12) translateX(-2%); } to { transform: scale(1.12) translateX(2%); } }
+@keyframes look-beam { 0%, 100% { opacity: 0.2; transform: scaleY(0.6); } 50% { opacity: 1; transform: scaleY(1); } }
+@keyframes look-sweep { from { transform: translateX(0) rotate(12deg); } to { transform: translateX(520%) rotate(12deg); } }
+@keyframes look-rise { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+@keyframes look-unveil { from { clip-path: inset(0 50% 0 50% round 2rem); } to { clip-path: inset(0 0 0 0 round 2rem); } }
+@keyframes look-ribbon { from { transform: translateX(30%) rotate(-12deg); opacity: 0; } to { opacity: 1; } }
+@keyframes look-blob {
+  0%, 100% { border-radius: 58% 42% 38% 62% / 52% 38% 62% 48%; }
+  33% { border-radius: 40% 60% 56% 44% / 40% 56% 44% 60%; }
+  66% { border-radius: 52% 48% 64% 36% / 60% 42% 58% 40%; }
+}
+@utility look-pan { animation: look-pan 18s ease-in-out infinite alternate; }
+@utility look-pan-wide { animation: look-pan-wide 24s ease-in-out infinite alternate; }
+@utility look-beam { animation: look-beam 5s ease-in-out infinite; }
+@utility look-sweep { animation: look-sweep 10s ease-in-out infinite; }
+@utility look-rise { animation: look-rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both; }
+@utility look-unveil { animation: look-unveil 1.3s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both; }
+@utility look-ribbon { animation: look-ribbon 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@utility look-blob { border-radius: 58% 42% 38% 62% / 52% 38% 62% 48%; animation: look-blob 14s ease-in-out infinite; }
+@utility look-orbit { animation: course-spin 26s linear infinite; }
+@utility look-orbit-rev { animation: course-spin 38s linear infinite reverse; }
+@keyframes look-slat { from { opacity: 0; transform: translateY(60px); clip-path: inset(100% 0 0 0 round 1.25rem); } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round 1.25rem); } }
+@utility look-slat { animation: look-slat 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+
+/* Org chart (src/components/page/orgchart.client.tsx): connectors draw in, dashed lines flow, boxes rise in turn. */
+@keyframes org-dash { to { stroke-dashoffset: -24; } }
+@layer components {
+  .org-chart .org-line { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.7s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--i, 0) * 45ms), stroke 0.3s, opacity 0.3s; }
+  .org-chart.is-shown .org-line { stroke-dashoffset: 0; }
+  .org-chart .org-line.org-dashed { stroke-dasharray: 6 6; stroke-dashoffset: 0; opacity: 0; transition: opacity 0.6s ease 1.2s; animation: org-dash 1.4s linear infinite; }
+  .org-chart.is-shown .org-line.org-dashed { opacity: 1; }
+  .org-chart [data-org-tree='wide'] .org-box { opacity: 0; transform: translateY(16px) scale(0.96); transition: opacity 0.5s ease calc(var(--i, 0) * 70ms), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i, 0) * 70ms), box-shadow 0.3s, border-color 0.3s; }
+  .org-chart.is-shown [data-org-tree='wide'] .org-box { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .org-chart .org-line { stroke-dashoffset: 0; }
+    .org-chart .org-line.org-dashed, .org-chart [data-org-tree='wide'] .org-box { opacity: 1; transform: none; }
+  }
+}
+@keyframes tab-panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@utility tab-panel-in { animation: tab-panel-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }

@@ -1,0 +1,11 @@
+node_modules
+.next
+media
+.git
+test-results
+playwright-report
+/dummy-banner-video.webm
+/IHNA_CI.webp
+deploy
+.env
+.env.*

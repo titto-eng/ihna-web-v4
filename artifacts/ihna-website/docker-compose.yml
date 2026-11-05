@@ -1,0 +1,31 @@
+name: ihna-web
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ihna
+    ports: ['5434:5432'] # 5432 is the Homebrew Postgres (dev DB `ihna`, DEC-27); 5433 is ihm-web's Docker Postgres
+    volumes: [pgdata:/var/lib/postgresql/data]
+  portal-mysql:
+    # Fixture copy of ihna_portal for lib/portal tests (never the real DB)
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ihna_portal
+      MYSQL_USER: portal_ro
+      MYSQL_PASSWORD: portal_ro
+    ports: ['3308:3306'] # 3307 is ihm-web's
+    volumes: [mysqldata:/var/lib/mysql]
+  mailpit:
+    # One Mailpit per machine is enough: the tests and the email adapter expect it on 1025/8025. When ihm-web's Mailpit is
+    # already up, start only the other services: `docker compose up -d postgres portal-mysql`.
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports: ['8025:8025', '1025:1025']
+volumes:
+  pgdata:
+  mysqldata:

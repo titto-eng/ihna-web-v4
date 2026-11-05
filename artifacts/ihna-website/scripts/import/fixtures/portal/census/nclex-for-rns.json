@@ -1,0 +1,23 @@
+{
+  "wpId": 305,
+  "path": "/courses/nclex-for-rns/",
+  "khId": 33,
+  "khIdSynthetic": false,
+  "asOf": "2026-10-16",
+  "rows": [
+    {
+      "intake": "November 2026",
+      "start": "02-11-2026",
+      "end": "22-01-2027",
+      "census": "13-11-2026",
+      "orientation": "26-10-2026"
+    },
+    {
+      "intake": "December 2026",
+      "start": "07-12-2026",
+      "end": "26-02-2027",
+      "census": "18-12-2026",
+      "orientation": "30-11-2026"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`unit census pickers and table > legacy JSON shape per depth, d-M-Y dates, " - " for none 1`] = `
+{
+  "batches": [
+    {
+      "batch_name": "DN-2025-MAR",
+      "id": "6006",
+    },
+    {
+      "batch_name": "DN-2026-NOV",
+      "id": "6001",
+    },
+  ],
+  "courses": [
+    {
+      "course_code": "HLT54121",
+      "course_id": "363",
+      "course_name": "Diploma of Nursing",
+    },
+    {
+      "course_code": "FIX9201",
+      "course_id": "9201",
+      "course_name": "Fixture Census Course",
+    },
+  ],
+  "details": [
+    {
+      "census_date": "11-Apr-2025",
+      "eftsl_factor": "0.0625",
+      "end_date": "29-Aug-2025",
+      "start_date": "03-Mar-2025",
+      "unit_code": "HLTENN035",
+      "year": "2025",
+    },
+    {
+      "census_date": "16-May-2025",
+      "eftsl_factor": "0.0500",
+      "end_date": "29-Aug-2025",
+      "start_date": "07-Apr-2025",
+      "unit_code": "HLTENN036",
+      "year": "2025",
+    },
+    {
+      "census_date": "16-May-2025",
+      "eftsl_factor": "0.0500",
+      "end_date": "29-Aug-2025",
+      "start_date": " - ",
+      "unit_code": "CHCDIV001",
+      "year": "2025",
+    },
+  ],
+  "semesters": [
+    {
+      "name": "Semester 1",
+      "semester_id": "1",
+    },
+    {
+      "name": "Semester 2",
+      "semester_id": "2",
+    },
+  ],
+}
+`;

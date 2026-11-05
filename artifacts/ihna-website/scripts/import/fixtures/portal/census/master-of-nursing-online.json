@@ -1,0 +1,16 @@
+{
+  "wpId": 340,
+  "path": "/courses/master-of-nursing-online/",
+  "khId": 74,
+  "khIdSynthetic": false,
+  "asOf": "2026-10-16",
+  "rows": [
+    {
+      "intake": "November 2026",
+      "start": "02-11-2026",
+      "end": "30-10-2028",
+      "census": "30-11-2026",
+      "orientation": "02-11-2026"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+ "formKey": "agent-registration",
+ "csvRows": [
+  12
+ ],
+ "comment": "enquiries.csv row 12: POST allow-listed agent fields to the IHM and IHNA stakeholder portals (two deliveries), email to the agents mailbox, acknowledgement to the registrant.",
+ "routing": {
+  "recipientGroups": [
+   {
+    "key": "marketing",
+    "to": [
+     "marketing@example.test"
+    ],
+    "cc": [
+     "digital@example.test"
+    ]
+   },
+   {
+    "key": "admissions",
+    "to": [
+     "admissions@example.test"
+    ],
+    "cc": []
+   },
+   {
+    "key": "agents",
+    "to": [
+     "agents@example.test"
+    ],
+    "cc": []
+   }
+  ],
+  "alertTo": [
+   "tech@example.test"
+  ],
+  "whatsappNumber": null,
+  "defaultSourceId": 24
+ },
+ "course": null,
+ "campus": null,
+ "campaign": null,
+ "enquiry": {
+  "id": 105,
+  "publicId": "abc123def456",
+  "submissionId": "11111111-1111-4111-8111-111111111111",
+  "pageUrl": "https://ihm.edu.au/courses/gcan/",
+  "ip": "203.0.113.9",
+  "utm": {},
+  "formKey": "agent-registration",
+  "email": "info@gsp.example.test",
+  "phone": "+880 1000 000000",
+  "country": "Bangladesh",
+  "data": {
+   "orgName": "Global Study Partners",
+   "address": "1 Example St, Dhaka",
+   "country": "Bangladesh",
+   "email": "info@gsp.example.test",
+   "phone": "+880 1000 000000",
+   "abn": "ABN 000",
+   "website": "https://gsp.example.test",
+   "contact1Name": "Rafi Ahmed",
+   "contact1Email": "rafi@gsp.example.test",
+   "contact1Mobile": "+880 1000 000001",
+   "notAllowed": "x"
+  }
+ },
+ "expected": {
+  "portalStakeholder:ihm": {
+   "transport": "http",
+   "requests": [
+    {
+     "method": "POST",
+     "url": "<env:PORTAL_IHM_STAKEHOLDER_URL>",
+     "headers": {},
+     "encoding": "form",
+     "note": "ihm stakeholder portal autoAgent",
+     "body": {
+      "orgName": "Global Study Partners",
+      "address": "1 Example St, Dhaka",
+      "country": "Bangladesh",
+      "email": "info@gsp.example.test",
+      "phone": "+880 1000 000000",
+      "abn": "ABN 000",
+      "website": "https://gsp.example.test",
+      "contact1Name": "Rafi Ahmed",
+      "contact1Email": "rafi@gsp.example.test",
+      "contact1Mobile": "+880 1000 000001"
+     }
+    }
+   ]
+  },
+  "portalStakeholder:ihna": {
+   "transport": "http",
+   "requests": [
+    {
+     "method": "POST",
+     "url": "<env:PORTAL_IHNA_STAKEHOLDER_URL>",
+     "headers": {},
+     "encoding": "form",
+     "note": "ihna stakeholder portal autoAgent",
+     "body": {
+      "orgName": "Global Study Partners",
+      "address": "1 Example St, Dhaka",
+      "country": "Bangladesh",
+      "email": "info@gsp.example.test",
+      "phone": "+880 1000 000000",
+      "abn": "ABN 000",
+      "website": "https://gsp.example.test",
+      "contact1Name": "Rafi Ahmed",
+      "contact1Email": "rafi@gsp.example.test",
+      "contact1Mobile": "+880 1000 000001"
+     }
+    }
+   ]
+  },
+  "email:agents": {
+   "to": [
+    "agents@example.test"
+   ],
+   "replyTo": "info@gsp.example.test",
+   "subject": "IHM : Agent Registration",
+   "headers": {
+    "Idempotency-Key": "105:agents"
+   },
+   "htmlIncludes": [
+    "Global Study Partners",
+    "Rafi Ahmed"
+   ]
+  },
+  "email:autoresponder": {
+   "to": [
+    "info@gsp.example.test"
+   ],
+   "subject": "IHM agent registration received",
+   "headers": {
+    "Idempotency-Key": "105:autoresponder"
+   },
+   "htmlIncludes": [
+    "Hi Rafi"
+   ]
+  }
+ }
+}

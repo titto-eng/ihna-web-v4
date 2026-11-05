@@ -1,0 +1,122 @@
+{
+ "formKey": "lp-admissions",
+ "csvRows": [
+  34
+ ],
+ "comment": "enquiries.csv row 34 (G5): admissions API JSON, course_code BN, campus per page, heard_about 'BON <City> - Google Ads', submission_id for idempotency, UTMs, email backup.",
+ "routing": {
+  "recipientGroups": [
+   {
+    "key": "marketing",
+    "to": [
+     "marketing@example.test"
+    ],
+    "cc": [
+     "digital@example.test"
+    ]
+   },
+   {
+    "key": "admissions",
+    "to": [
+     "admissions@example.test"
+    ],
+    "cc": []
+   },
+   {
+    "key": "agents",
+    "to": [
+     "agents@example.test"
+    ],
+    "cc": []
+   }
+  ],
+  "alertTo": [
+   "tech@example.test"
+  ],
+  "whatsappNumber": null,
+  "defaultSourceId": 24
+ },
+ "course": null,
+ "campus": {
+  "id": 22,
+  "name": "Sydney",
+  "slug": "sydney",
+  "portalCampusId": null,
+  "hubspotCampusValue": null
+ },
+ "campaign": null,
+ "enquiry": {
+  "id": 104,
+  "publicId": "abc123def456",
+  "submissionId": "22222222-2222-4222-8222-222222222222",
+  "pageUrl": "https://ihm.edu.au/lp/bachelor-of-nursing-sydney/",
+  "ip": "203.0.113.9",
+  "utm": {
+   "utmSource": "google",
+   "utmMedium": "cpc",
+   "utmCampaign": "bon-syd"
+  },
+  "formKey": "lp-admissions",
+  "firstName": "Liam",
+  "lastName": "O'Brien",
+  "email": "liam@example.test",
+  "phone": "0400 111 222",
+  "studentType": "domestic",
+  "data": {
+   "name": "Liam O'Brien",
+   "mobileCountryCode": "+61",
+   "phone": "0400 111 222",
+   "email": "liam@example.test",
+   "education": "Year 12",
+   "studentType": "domestic",
+   "formType": "credit"
+  }
+ },
+ "expected": {
+  "admissionsApi:admissions": {
+   "transport": "http",
+   "requests": [
+    {
+     "method": "POST",
+     "url": "<env:ADMISSIONS_API_URL>",
+     "headers": {
+      "X-API-Key": "[masked]"
+     },
+     "encoding": "json",
+     "note": "admissions API website lead",
+     "body": {
+      "first_name": "Liam",
+      "last_name": "O'Brien",
+      "email": "liam@example.test",
+      "mobile": "0400 111 222",
+      "mobile_country_code": "+61",
+      "course_code": "BN",
+      "campus": "Sydney (Argyle St)",
+      "heard_about": "BON Sydney - Google Ads",
+      "promo_code": "",
+      "message": "",
+      "submission_id": "22222222-2222-4222-8222-222222222222",
+      "page_url": "https://ihm.edu.au/lp/bachelor-of-nursing-sydney/",
+      "utm_source": "google",
+      "utm_medium": "cpc",
+      "utm_campaign": "bon-syd"
+     }
+    }
+   ]
+  },
+  "email:admissions": {
+   "to": [
+    "admissions@example.test"
+   ],
+   "replyTo": "liam@example.test",
+   "subject": "Enquiry from Landing page (Bachelor of Nursing)",
+   "headers": {
+    "Idempotency-Key": "104:admissions"
+   },
+   "htmlIncludes": [
+    "Liam O&#39;Brien",
+    "Year 12"
+   ]
+  }
+ }
+}

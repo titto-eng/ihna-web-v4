@@ -1,0 +1,10 @@
+// Authoring kit for the hardcoded pages. See src/components/page/blocks.tsx.
+export * from './blocks'
+export { img, type ImgSpec } from './img'
+export { pageMetadata, type PageMeta } from './metadata'
+export { Article } from './article'
+export { AwardBoard, Checklist, DocumentGroups, ChecklistItems, EventDetail, ContactCards, FactBand, FigureGrid, GrowthRoadmap, HighlightStrip, StructureChart, LinkGroups, LinkTiles, LogoBadge, LogoTiles, MediaSplit, PartnerList, PeopleGrid, Pillars, PriceList, QuickFacts, QuoteWall, SectionHead, SplitProse, Statement, ThankYouCard, Timeline, ValueCards } from './showcase'
+export type { RoadmapItem } from './roadmap.client'
+export { CareerRoles, GrowthPoints, InsightStats, SalaryBoard, SchoolIntro, StudySteps } from './school'
+export type { OrgDotted, OrgNode } from './orgchart.client'
+export { ActionTiles, AwardTimeline, CountStats, DocCards, EventCards, FeatureCards, IconChecks, JourneySteps, Panels, ProgramPicker } from './feature'

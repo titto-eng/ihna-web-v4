@@ -1,0 +1,51 @@
+{
+  "wpId": 10039,
+  "path": "/courses/bachelor-of-social-work-international/",
+  "khId": 9002,
+  "khIdSynthetic": true,
+  "asOf": "2026-10-16",
+  "rows": [
+    {
+      "intake": "July 2026",
+      "start": "20-07-2026",
+      "end": "01-07-2030",
+      "census": "20-08-2026",
+      "orientation": "06-07-2026"
+    },
+    {
+      "intake": "November 2026",
+      "start": "02-11-2026",
+      "end": "28-10-2030",
+      "census": "30-11-2026",
+      "orientation": "02-11-2026"
+    },
+    {
+      "intake": "March 2027",
+      "start": "01-03-2027",
+      "end": "24-02-2031",
+      "census": "31-03-2027",
+      "orientation": "01-03-2027"
+    },
+    {
+      "intake": "July 2027",
+      "start": "05-07-2027",
+      "end": "30-06-2031",
+      "census": "04-08-2027",
+      "orientation": "05-07-2027"
+    },
+    {
+      "intake": "November 2027",
+      "start": "01-11-2027",
+      "end": "27-10-2031",
+      "census": "01-12-2027",
+      "orientation": "01-11-2027"
+    },
+    {
+      "intake": "March 2028",
+      "start": "06-03-2028",
+      "end": "01-03-2032",
+      "census": "31-03-2028",
+      "orientation": "06-03-2028"
+    }
+  ]
+}

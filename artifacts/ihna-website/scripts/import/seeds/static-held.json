@@ -1,0 +1,41 @@
+{
+  "_comment": "IHNA. Files of the copied stores (seeds/documents.ts STATIC_STORES) that ihna.edu.au no longer serves (404 on live, HEAD per file 2026-10-21). Not copied, not imported; rule 1/D11: gone stays gone.",
+  "paths": [
+    "/pdf/Aboriginal_and_Torres_Strait_Islander.pdf",
+    "/pdf/EducationAgentApplicationForm.pdf",
+    "/pdf/IHNA_Agent_List_2024.pdf",
+    "/pdf/IHNA_Agent_List_2024_old.pdf",
+    "/pdf/IHNA_Articulation_Pathway_eBook_BKP(JO).pdf",
+    "/pdf/IHNA_Articulation_Pathway_eBook__BKP(09-Nov-2023-ADR).pdf",
+    "/pdf/IHNA_Proposed_Reconciliation_Action_Plan.pdf",
+    "/pdf/IHNA_Proposed_Reconciliation_Action_Plan_old.pdf",
+    "/pdf/IHNA_Prospectus_bkp.pdf",
+    "/pdf/IHNA_Prospectus_old.pdf",
+    "/pdf/IHNA_Risk_Managment_Framework_OLD.pdf",
+    "/pdf/IHNA_glossary_of_terms_old.pdf",
+    "/pdf/agent-guide-submitting-student-applications.pdf",
+    "/pdf/corporate_profile_old(16-Dec-2024-adr).pdf",
+    "/pdf/corporate_profile_old.pdf",
+    "/pdf/corporate_profile_old_bkp.pdf",
+    "/pdf/fee-details-and-payment-plan-2021.pdf",
+    "/pdf/fee-details-and-payment-plan-2022.pdf",
+    "/pdf/fee-details-and-payment-plan-2024.pdf",
+    "/pdf/fee-details-and-payment-plan-2024_old_bkp.pdf",
+    "/pdf/fee-details-and-payment-plan-2025.pdf"
+  ],
+  "missingOnServerOnly": {
+    "_comment": "200 on live but not in ../ihna-web-2.0: the live-files step GETs them (<=1 req/s) into public/ at the same path",
+    "paths": [
+      "/ihna-policies/IHNA_Prepaid_Fee_Management_Policy.pdf",
+      "/ihna-policies/IHNA_student_code_of_conduct_policy.pdf",
+      "/ihna-procedures/IHNA_Prepaid_Tuition_Fees_Procedure.pdf",
+      "/ihna-procedures/IHNA_student_code_of_conduct_procedure.pdf",
+      "/pdf/HCI_IHNA-RAP-Document_V2_26Jun10.pdf",
+      "/pdf/VET_Student_Loan/2026/CHC52025_Diploma_of_Community_Services_Vet_Student_Loan_2026.pdf",
+      "/pdf/VET_Student_and_NCVER_Privacy_Notice.pdf",
+      "/pdf/fee-details-and-payment-plan-2026.pdf",
+      "/pdf/fee-details-and-payment-plan-2027.pdf",
+      "/wp-content/uploads/blog/uploads/2016/01/Child-Care-Study-30-11-15.pdf"
+    ]
+  }
+}

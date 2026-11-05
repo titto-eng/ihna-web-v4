@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "master-of-nursing",
+    "wpId": 96,
+    "path": "/courses/master-of-nursing/",
+    "khId": 41,
+    "khIdSynthetic": false,
+    "censusRows": 6
+  },
+  {
+    "slug": "master-of-nursing-online",
+    "wpId": 340,
+    "path": "/courses/master-of-nursing-online/",
+    "khId": 74,
+    "khIdSynthetic": false,
+    "censusRows": 1
+  },
+  {
+    "slug": "master-of-nursing-international",
+    "wpId": 10036,
+    "path": "/courses/master-of-nursing-international/",
+    "khId": 9001,
+    "khIdSynthetic": true,
+    "censusRows": 8
+  },
+  {
+    "slug": "bachelor-of-social-work",
+    "wpId": 1547,
+    "path": "/courses/bachelor-of-social-work/",
+    "khId": 60,
+    "khIdSynthetic": false,
+    "censusRows": 5
+  },
+  {
+    "slug": "bachelor-of-social-work-international",
+    "wpId": 10039,
+    "path": "/courses/bachelor-of-social-work-international/",
+    "khId": 9002,
+    "khIdSynthetic": true,
+    "censusRows": 6
+  },
+  {
+    "slug": "nclex-for-rns",
+    "wpId": 305,
+    "path": "/courses/nclex-for-rns/",
+    "khId": 33,
+    "khIdSynthetic": false,
+    "censusRows": 2
+  },
+  {
+    "slug": "diabetes-nursing",
+    "wpId": 868,
+    "path": "/courses/diabetes-nursing/",
+    "khId": 9003,
+    "khIdSynthetic": true,
+    "censusRows": 2
+  },
+  {
+    "slug": "graduate-certificate-in-advanced-nursing-acute-care-nursing",
+    "wpId": 845,
+    "path": "/courses/graduate-certificate-in-advanced-nursing-acute-care-nursing/",
+    "khId": 9004,
+    "khIdSynthetic": true,
+    "censusRows": 2
+  },
+  {
+    "slug": "graduate-certificate-in-advanced-nursing-australian-nursing-practice",
+    "wpId": 6355,
+    "path": "/courses/graduate-certificate-in-advanced-nursing-australian-nursing-practice/",
+    "khId": 51,
+    "khIdSynthetic": false,
+    "censusRows": 1
+  },
+  {
+    "slug": "osce-for-rns",
+    "wpId": 307,
+    "path": "/courses/osce-for-rns/",
+    "khId": 61,
+    "khIdSynthetic": false,
+    "censusRows": 0
+  }
+]

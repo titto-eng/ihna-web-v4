@@ -1,0 +1,205 @@
+{
+  "source": {
+    "categories": "Schools: the Courses mega menu of ihna.edu.au (live 2026-10-21), groups in menu order; detailPath = the school page in pages.csv (for reference: categories have no detailPath field)",
+    "levels": "Course finder 'Find courses based on qualification level' (../ihna-web-2.0/course-urls.json sel2_1, used by footer.php); legacyId = its id",
+    "disciplines": "Course finder 'Find courses based on your interest' (course-urls.json sel2_2); legacyId = its id",
+    "universities": "The partner university a course leads to: the IHNA-IHM package (body of /courses/diploma-of-community-service-to-bachelor-of-social-work/)",
+    "courses": "Per course page: menu group, finder level and interest (course-urls.json lists the domestic page; its international page and the courses the finder does not list follow the same qualification)",
+    "brochurePdf": "The course's PDF in the old repo's brochures-new/ (by qualification code); 404 on the live site today, so link-course-brochures links it only once a documents row holds it"
+  },
+  "categories": [
+    {
+      "slug": "school-of-nursing",
+      "name": "IHNA School of Nursing",
+      "detailPath": "/school-of-nursing/"
+    },
+    {
+      "slug": "school-of-community-services",
+      "name": "IHNA School of Community Services",
+      "detailPath": "/school-of-community-services/"
+    },
+    {
+      "slug": "school-of-allied-health-and-human-services",
+      "name": "IHNA School of Allied Health and Human Services",
+      "detailPath": "/school-of-allied-health/"
+    },
+    {
+      "slug": "package-courses",
+      "name": "IHNA Package Courses",
+      "detailPath": null
+    },
+    {
+      "slug": "first-aid",
+      "name": "First Aid",
+      "detailPath": "/school-of-first-aid/"
+    },
+    {
+      "slug": "other-courses",
+      "name": "Other Courses",
+      "detailPath": null
+    }
+  ],
+  "levels": [
+    {
+      "slug": "certificate-iii",
+      "name": "Certificate III",
+      "legacyId": 1
+    },
+    {
+      "slug": "diploma",
+      "name": "Diploma",
+      "legacyId": 3
+    },
+    {
+      "slug": "first-aid",
+      "name": "First Aid",
+      "legacyId": 4
+    }
+  ],
+  "disciplines": [
+    {
+      "slug": "nursing",
+      "name": "Nursing",
+      "legacyId": 4
+    },
+    {
+      "slug": "allied-health-and-human-services",
+      "name": "Allied Health and Human Services",
+      "legacyId": 2
+    },
+    {
+      "slug": "community-services",
+      "name": "Community Services",
+      "legacyId": 5
+    },
+    {
+      "slug": "first-aid",
+      "name": "First Aid",
+      "legacyId": 6
+    }
+  ],
+  "universities": [
+    {
+      "slug": "ihm",
+      "name": "Institute of Health and Management (IHM)",
+      "detailPath": "/ihm-courses/"
+    }
+  ],
+  "courses": {
+    "diploma-of-nursing": {
+      "school": "school-of-nursing",
+      "level": "diploma",
+      "discipline": "nursing",
+      "brochurePdf": "/brochures-new/DON/DON.pdf"
+    },
+    "diploma-of-nursing-int": {
+      "school": "school-of-nursing",
+      "level": "diploma",
+      "discipline": "nursing",
+      "brochurePdf": "/brochures-new/DON-int/DON-int.pdf"
+    },
+    "hlt57921-diploma-of-anaesthetic-technology-and-practices": {
+      "school": "school-of-nursing",
+      "level": "diploma",
+      "discipline": "nursing",
+      "brochurePdf": "/brochures-new/DOATP/DOATP.pdf"
+    },
+    "chc52021-diploma-of-community-services-case-management": {
+      "school": "school-of-community-services",
+      "level": "diploma",
+      "discipline": "community-services"
+    },
+    "chc52021-diploma-of-community-services-case-management-international-students": {
+      "school": "school-of-community-services",
+      "level": "diploma",
+      "discipline": "community-services"
+    },
+    "diploma-community-services-case-management": {
+      "school": "school-of-community-services",
+      "level": "diploma",
+      "discipline": "community-services",
+      "brochurePdf": "/brochures-new/DoCS(CM)/DoCS(CM).pdf"
+    },
+    "diploma-community-services-case-management-int": {
+      "school": "school-of-community-services",
+      "level": "diploma",
+      "discipline": "community-services",
+      "brochurePdf": "/brochures-new/DoCS(CM)-int/DoCS(CM)-int.pdf"
+    },
+    "certificate-iii-in-individual-support-ageing-and-disability": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inIS-A-D/C3inIS-A-D.pdf"
+    },
+    "chc33021-certificate-iii-in-individual-support-ageing-and-disability-international": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inIS-A-D-int/C3inIS-A-D-int.pdf"
+    },
+    "hlt33115-certificate-iii-in-health-services-assistance-assisting-in-nursing-work-in-acute-care": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inHSA(Acute)/C3inHSA(Acute).pdf"
+    },
+    "certificate-iii-pathology-collection": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inPC/C3inPC.pdf"
+    },
+    "hlt37525-certificate-iii-in-pathology-collection": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services"
+    },
+    "hlt37525-certificate-in-pathology-pathology-collection-int": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services"
+    },
+    "certificate-iii-in-sterilisation-services": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inSS/C3inSS.pdf"
+    },
+    "hlt35021-certificate-iii-in-dental-assisting": {
+      "school": "school-of-allied-health-and-human-services",
+      "level": "certificate-iii",
+      "discipline": "allied-health-and-human-services",
+      "brochurePdf": "/brochures-new/C3inDA/C3inDA.pdf"
+    },
+    "diploma-of-community-service-to-bachelor-of-social-work": {
+      "school": "package-courses",
+      "level": "diploma",
+      "discipline": "community-services",
+      "university": "ihm"
+    },
+    "provide-first-aid": {
+      "school": "first-aid",
+      "level": "first-aid",
+      "discipline": "first-aid"
+    },
+    "provide-cardiopulmonary-resuscitation": {
+      "school": "first-aid",
+      "level": "first-aid",
+      "discipline": "first-aid"
+    },
+    "provide-basic-emergency-life-support": {
+      "school": "first-aid",
+      "level": "first-aid",
+      "discipline": "first-aid"
+    },
+    "hltpat005-collect-specimens-for-drugs-of-abuse-testing": {
+      "school": "first-aid",
+      "level": "first-aid",
+      "discipline": "first-aid"
+    },
+    "ihna-english-language-preperatory-course": {
+      "school": "other-courses"
+    }
+  }
+}

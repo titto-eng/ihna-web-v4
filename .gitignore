@@ -56,3 +56,8 @@ Thumbs.db
 /generated-artifacts/
 /artifacts/ihna-website/media/
 /artifacts/ihna-website/public/
+.env
+.env.*
+!.env.example
+*.dump
+*.backup

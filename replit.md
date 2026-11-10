@@ -5,7 +5,8 @@ The existing IHNA Next.js/Payload website is imported into `artifacts/ihna-websi
 ## IHNA operations
 
 - Main service: `artifacts/ihna-website: web`. Uses the artifact-assigned `PORT`.
-- Preview currently runs the production build (`start`) for reviewer validation. Rebuild after source changes, or switch the managed development command back to `dev` for editing.
+- Preview runs `dev` for code refresh after pulls; publishing still runs a production build and `start`.
+- Canonical Git repository: `titto-eng/ihna-web-v4`. Windows/local PostgreSQL instructions: `artifacts/ihna-website/docs/WINDOWS-AND-REPLIT.md`. Git does not synchronise CMS records or ignored assets.
 - `pnpm --filter @workspace/ihna-website typecheck` and `pnpm --filter @workspace/ihna-website build` validate the imported application.
 - Payload uses the restored Replit PostgreSQL database. `DISABLE_DB_PUSH=1` prevents automatic schema changes. Never run the scaffold's Drizzle push against this database.
 - `/api/*` belongs to Next.js/Payload; the template API service owns only `/api/healthz`.

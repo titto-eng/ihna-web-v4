@@ -28,7 +28,16 @@ export default buildConfig({
     // Browser extensions (Grammarly, password managers) add attributes to <html>/<body> before React hydrates; don't treat that as an app error.
     suppressHydrationWarning: true,
   },
-  collections,
+  // GCS 3.91 returns early when disabled, even with alwaysInsertFields.
+  // Preserve its columns locally so local migrations never drop cloud metadata.
+  collections: process.env.DEFAULT_OBJECT_STORAGE_BUCKET_ID ? collections : collections.map((collection) =>
+    ['media', 'documents'].includes(collection.slug) ? {
+      ...collection,
+      fields: [...collection.fields,
+        { name: 'prefix', type: 'text' as const, admin: { hidden: true } },
+        { name: '_objectKey', type: 'text' as const, admin: { hidden: true } },
+      ],
+    } : collection),
   globals,
   blocks: blockConfigs, // DEC-6: defined once, referenced by `layout` fields via blockReferences
   editor: lexicalEditor(),
@@ -49,7 +58,9 @@ export default buildConfig({
   // collections that render pages. `generateTitle` is the bare title: `site.titleTemplate` adds the suffix at render (70 §4).
   plugins: [
     gcsStorage({
-      bucket: process.env.DEFAULT_OBJECT_STORAGE_BUCKET_ID!,
+      enabled: Boolean(process.env.DEFAULT_OBJECT_STORAGE_BUCKET_ID),
+      alwaysInsertFields: true, // Local and cloud databases must retain the same storage columns.
+      bucket: process.env.DEFAULT_OBJECT_STORAGE_BUCKET_ID || 'local-storage-disabled',
       options: storageOptions,
       collections: {
         media: { prefix: 'ihna/media' },

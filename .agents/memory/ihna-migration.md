@@ -13,3 +13,9 @@ The user wants to develop both locally with a local database and in Replit, exch
 **Why:** The user wants neither editing environment to become a separate, diverging project.
 
 **How to apply:** Keep one canonical repository and portable runtime configuration. Distinguish Git code synchronisation, database schema changes, CMS content transfer, and uploaded assets; never treat a Git pull as a database merge.
+
+The user confirmed Windows as their local environment and `titto-eng/ihna-web-v4` as the canonical repository, not the originally supplied repository.
+
+**Why:** Explicit user selection for two-way development.
+
+**How to apply:** Keep that repository connected; provide Windows-compatible local instructions.
